@@ -1,7 +1,6 @@
 <script context="module">
 	export async function load({ url, session }) {
 		const { authenticated, guest } = session;
-
 		// If we are not on a guest endpoint and we are not authenticated we redirect
 		if (!authenticated && !guest) {
 			return {
@@ -13,8 +12,7 @@
 		return {
 			status: 200,
 			props: {
-				// user: response ? response.data : {}
-				user: {}
+				authenticated
 			}
 		};
 	}
@@ -22,18 +20,25 @@
 
 <script>
 	import '../app.css';
+	import { user } from '$lib/store/user';
+	import { authClient } from '$lib/axios';
+	import { onMount } from 'svelte';
+
+
+	onMount(async () => {
+		console.log('STORED USER', $user, authenticated);
+		if(!$user && authenticated) {
+			// Fetch user and store
+			const response = await authClient.get('/api/user');
+			user.set(response.data)
+		}
+	})
+
+	export let authenticated;
 </script>
 
-<div class="min-h-screen bg-gray-100">
-	<!-- <Navigation user={user} /> -->
+<svelte:head>
+	<title>Laravel</title>
+</svelte:head>
 
-	<!-- Page Heading -->
-	<!-- <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{header}}
-        </div>
-    </header> -->
-
-	<!-- Page Content -->
-	<main><slot /></main>
-</div>
+<slot />
