@@ -52,10 +52,15 @@ export async function post(event) {
 		maxAge: 60 * 60 * 24 * 7, // 1 week
 		path: '/'
 	});
+	const userCookie = cookie.serialize('user_session', JSON.stringify(responseFromServer.data), {
+		httpOnly: true,
+		maxAge: 60 * 60 * 24 * 7, // 1 week
+		path: '/'
+	});
 
 	return {
 		headers: {
-			'Set-Cookie': [xsrfCookie, laravelCookie]
+			'Set-Cookie': [xsrfCookie, laravelCookie, userCookie]
 		},
 		body: responseFromServer.data
 	};

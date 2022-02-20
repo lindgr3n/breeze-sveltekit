@@ -32,15 +32,17 @@ export async function handle({ event, resolve }) {
 	const authenticated = await isAuthenticated(cookies);
 	event.locals.authenticated = authenticated;
 	event.locals.guest = publicPages.includes(event.url.pathname);
+	event.locals.user = cookies.user_session
 
 	const response = await resolve(event);
 	return response;
 }
 
 export function getSession(request) {
-	const { authenticated, guest } = request.locals;
+	const { authenticated, guest, user } = request.locals;
 	return {
 		authenticated,
-		guest
+		guest,
+		user: user ? JSON.parse(user) : null
 	};
 }

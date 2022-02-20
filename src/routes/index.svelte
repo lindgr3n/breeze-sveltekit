@@ -2,12 +2,6 @@
 	export async function load({ session }) {
 		const { authenticated } = session;
 
-		// if (authenticated) {
-		// 	return {
-		// 		status: 302,
-		// 		redirect: '/dashboard'
-		// 	};
-		// }
 		return {
 			props: {
 				authenticated

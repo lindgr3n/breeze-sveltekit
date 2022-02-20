@@ -1,6 +1,4 @@
 <script>
-    import { goto } from "$app/navigation";
-
     import { page } from "$app/stores";
     import { authClient } from "$lib/axios";
     import { user } from "$lib/store/user";
@@ -11,7 +9,7 @@
     import ResponsiveNavLink from "../ResponsiveNavLink.svelte";
 
     async function logout() {
-        authClient.post('/api/logout');
+        await authClient.post('/api/logout');
         user.set(null)
         // goto('/login')
         window.location = '/login'
@@ -52,7 +50,7 @@
                             <p class="text-sm font-medium leading-5 text-gray-900 truncate">{$user?.email}</p>
                         </div>
                         <div class="py-1">
-                            <a href="" on:click={logout} tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Sign out</a>
+                            <div on:click={logout} tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Sign out</div>
                         </div>
                     </div>
                 </Dropdown>

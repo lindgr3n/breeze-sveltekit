@@ -21,6 +21,8 @@ export async function post(event) {
 		};
 	});
 
+	
+	
     if(errorsResponse) {
         return errorsResponse
     }
@@ -35,11 +37,17 @@ export async function post(event) {
 		maxAge: 0,
 		path: '/'
 	});
+	const userCookie = cookie.serialize('user_session', "", {
+		httpOnly: true,
+		maxAge: 0,
+		path: '/'
+	});
 	
 	event.locals.authenticated = false;
+	event.locals.user = null;
     return {
 		headers: {
-			'Set-Cookie': [xsrfCookie, laravelCookie]
+			'Set-Cookie': [xsrfCookie, laravelCookie, userCookie]
 		},
     }
 }

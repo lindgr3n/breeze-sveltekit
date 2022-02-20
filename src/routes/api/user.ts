@@ -13,8 +13,6 @@ export async function get(event) {
 			Cookie: `XSRF-TOKEN=${cookies['XSRF-TOKEN']};laravel_session=${cookies['laravel_session']}`
 		}
 	}).catch((error) => {
-        console.log('USER API', error);
-        
         errorsResponse = {
 			status: error.response.status,
 			body: {

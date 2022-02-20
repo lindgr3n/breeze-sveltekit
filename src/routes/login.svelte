@@ -23,10 +23,7 @@
 	import Input from '$lib/components/Input.svelte';
 	import Label from '$lib/components/Label.svelte';
 	import GuestLayout from '$lib/components/layouts/GuestLayout.svelte';
-import { user } from '$lib/store/user';
-	import { onMount } from 'svelte';
-
-	onMount(async () => {});
+	import { user } from '$lib/store/user';
 
 	let email = '';
 	let password = '';
