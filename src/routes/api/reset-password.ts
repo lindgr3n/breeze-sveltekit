@@ -5,7 +5,7 @@ export async function get(event) {
 	const responseUser = await authClient('/reset-password', {
 		method: 'post',
 		headers: {
-			Referer: 'localhost:3000'
+			Referer: event.url.host
 		}
 	}).catch((error) => {
 		errorsResponse = {

@@ -32,7 +32,7 @@ export async function post(event) {
 	const responseFromServer = await authClient('/api/user', {
 		method: 'get',
 		headers: {
-			Referer: 'localhost:3000',
+			Referer: event.url.host,
 			'X-XSRF-TOKEN': cookies['XSRF-TOKEN'],
 			Cookie: `XSRF-TOKEN=${cookies['XSRF-TOKEN']};laravel_session=${cookies['laravel_session']}`
 		}

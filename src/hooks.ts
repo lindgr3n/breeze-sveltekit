@@ -3,7 +3,7 @@ import { authClient } from '$lib/axios_backend';
 
 const publicPages = ['/login', '/register', '/api', '/'];
 
-async function isAuthenticated(cookies) {
+async function isAuthenticated(event, cookies) {
 	if (Object.keys(cookies).length === 0) {
 		return false;
 	}
@@ -11,7 +11,7 @@ async function isAuthenticated(cookies) {
 	const responseFromServer = await authClient('/api/user', {
 		method: 'get',
 		headers: {
-			Referer: 'localhost:3000',
+			Referer: event.url.host,
 			'X-XSRF-TOKEN': cookies['XSRF-TOKEN'],
 			Cookie: `XSRF-TOKEN=${cookies['XSRF-TOKEN']};laravel_session=${cookies['laravel_session']}`
 		}
@@ -29,10 +29,10 @@ async function isAuthenticated(cookies) {
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
 	const cookies = cookie.parse(event.request.headers.get('cookie') || '');
-	const authenticated = await isAuthenticated(cookies);
+	const authenticated = await isAuthenticated(event, cookies);
 	event.locals.authenticated = authenticated;
 	event.locals.guest = publicPages.includes(event.url.pathname);
-	event.locals.user = cookies.user_session
+	event.locals.user = cookies.user_session;
 
 	const response = await resolve(event);
 	return response;

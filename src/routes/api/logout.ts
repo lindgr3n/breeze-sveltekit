@@ -8,7 +8,7 @@ export async function post(event) {
 	const response = await authClient('/logout', {
 		method: 'post',
 		headers: {
-			Referer: 'localhost:3000',
+			Referer: event.url.host,
 			'X-XSRF-TOKEN': cookies['XSRF-TOKEN'],
 			Cookie: `XSRF-TOKEN=${cookies['XSRF-TOKEN']};laravel_session=${cookies['laravel_session']}`
 		}
