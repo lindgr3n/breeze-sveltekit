@@ -12,7 +12,6 @@
 		return {
 			status: 200,
 			props: {
-				
 				userSession: user
 			}
 		};
@@ -23,9 +22,9 @@
 	import '../app.css';
 	import { user } from '$lib/store/user';
 
-	export let userSession
+	export let userSession;
 
-	if(userSession) {
+	if (userSession) {
 		user.set(userSession);
 	}
 </script>

@@ -58,7 +58,7 @@ export async function post(event) {
 		path: '/'
 	});
 
-	event.locals.user = responseFromServer.data
+	event.locals.user = responseFromServer.data;
 
 	return {
 		headers: {

@@ -38,9 +38,9 @@
 			console.log('LOGIN ERROR', e.response);
 			errors = e.response.data.errors;
 		});
-		user.set(loginResponse.data)
+		user.set(loginResponse.data);
 		if (errors.length === 0) {
-			goto('/dashboard');	// Does not trigger hook
+			goto('/dashboard'); // Does not trigger hook
 		}
 	}
 </script>

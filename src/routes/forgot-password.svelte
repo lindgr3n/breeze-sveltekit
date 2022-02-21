@@ -50,16 +50,15 @@
 		</div>
 
 		<div class="mb-4 text-sm text-gray-600">
-			Forgot your password? No problem. Just let us know your
-			email address and we will email you a password reset link
-			that will allow you to choose a new one.
+			Forgot your password? No problem. Just let us know your email address and we will email you a
+			password reset link that will allow you to choose a new one.
 		</div>
 
 		<!-- Session Status -->
-		<AuthSessionStatus class="mb-4" status={status} />
+		<AuthSessionStatus class="mb-4" {status} />
 
 		<!-- Validation Errors -->
-		<AuthValidationErrors class="mb-4" errors={errors} />
+		<AuthValidationErrors class="mb-4" {errors} />
 
 		<form onSubmit={submitForm}>
 			<!-- Email Address -->

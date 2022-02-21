@@ -1,15 +1,14 @@
-import { authClient } from "$lib/axios_backend";
+import { authClient } from '$lib/axios_backend';
 
 export async function get(event) {
-
 	let errorsResponse = null;
-    const responseUser = await authClient('/reset-password', {
+	const responseUser = await authClient('/reset-password', {
 		method: 'post',
 		headers: {
-			Referer: 'localhost:3000',
+			Referer: 'localhost:3000'
 		}
 	}).catch((error) => {
-        errorsResponse = {
+		errorsResponse = {
 			status: error.response.status,
 			body: {
 				errors: Object.values(error.response.data.errors).flat()
@@ -17,9 +16,9 @@ export async function get(event) {
 		};
 	});
 
-    if(errorsResponse) {
-        return errorsResponse
-    }
+	if (errorsResponse) {
+		return errorsResponse;
+	}
 
-    return {}
+	return {};
 }

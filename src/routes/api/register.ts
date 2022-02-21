@@ -1,10 +1,10 @@
-import { authClient } from "$lib/axios_backend";
-import cookie from 'cookie'
+import { authClient } from '$lib/axios_backend';
+import cookie from 'cookie';
 
 export async function post(event) {
-    const data = await event.request.formData();
-    
-    const response = await authClient.get('/sanctum/csrf-cookie');
+	const data = await event.request.formData();
+
+	const response = await authClient.get('/sanctum/csrf-cookie');
 	const cookies = cookie.parse(response.headers['set-cookie'].join(';'));
 
 	let errorsResponse = null;
@@ -14,11 +14,11 @@ export async function post(event) {
 			'X-XSRF-TOKEN': cookies['XSRF-TOKEN'],
 			Cookie: `XSRF-TOKEN=${cookies['XSRF-TOKEN']};laravel_session=${cookies['laravel_session']}`
 		},
-		data: { 
-            name: data.get('name'), 
-            email: data.get('email'), 
-            password: data.get('password') 
-        }
+		data: {
+			name: data.get('name'),
+			email: data.get('email'),
+			password: data.get('password')
+		}
 	}).catch((error) => {
 		errorsResponse = {
 			status: error.response.status,
@@ -28,11 +28,11 @@ export async function post(event) {
 		};
 	});
 
-    if (errorsResponse) {
+	if (errorsResponse) {
 		return errorsResponse;
 	}
-    
-    // cookies = cookie.parse(registerResponse.headers['set-cookie'].join(';'));
+
+	// cookies = cookie.parse(registerResponse.headers['set-cookie'].join(';'));
 
 	// const xsrfCookie = cookie.serialize('XSRF-TOKEN', cookies['XSRF-TOKEN'], {
 	// 	httpOnly: true,

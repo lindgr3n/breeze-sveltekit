@@ -1,7 +1,7 @@
 <script>
-import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
 
-import { authClient } from '$lib/axios';
+	import { authClient } from '$lib/axios';
 
 	import ApplicationLogo from '$lib/components/ApplicationLogo.svelte';
 
@@ -13,7 +13,7 @@ import { authClient } from '$lib/axios';
 	import GuestLayout from '$lib/components/layouts/GuestLayout.svelte';
 
 	async function submitForm() {
-        const formData = new FormData();
+		const formData = new FormData();
 		formData.append('name', name);
 		formData.append('email', email);
 		formData.append('password', password);
@@ -24,7 +24,7 @@ import { authClient } from '$lib/axios';
 		if (errors.length === 0) {
 			goto('/login');
 		}
-    }
+	}
 
 	let name = '';
 	let email = '';
