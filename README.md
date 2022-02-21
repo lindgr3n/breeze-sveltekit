@@ -1,40 +1,60 @@
-# create-svelte
+# Laravel Breeze - SvelteKit Edition 🏝️
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Introduction
 
-## Creating a project
+This repository is an SvelteKit implementation of the
+This repository is an implementing of the [Laravel Breeze](https://laravel.com/docs/starter-kits) application / authentication starter kit frontend in [SvelteKit](https://kit.svelte.dev/). All of the authentication boilerplate is already written for you - powered by [Laravel Sanctum](https://laravel.com/docs/sanctum), allowing you to quickly begin pairing your beautiful SvelteKit frontend with a powerful Laravel backend.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Official Documentation
+
+### Installation
+
+First, create a SvelteKit compatible Laravel backend by installing Laravel Breeze into a [fresh Laravel application](https://laravel.com/docs/installation) and installing Breeze's API scaffolding:
 
 ```bash
-# create a new project in the current directory
-npm init svelte@next
+# Create the Laravel application...
+laravel new sveltekit-backend
 
-# create a new project in my-app
-npm init svelte@next my-app
+cd next-backend
+
+# Install Breeze and dependencies...
+composer require laravel/breeze
+
+php artisan breeze:install api
 ```
 
-> Note: the `@next` is temporary
+Next, ensure that your application's `APP_URL` and `FRONTEND_URL` environment variables are set to `http://localhost:8000` and `http://localhost:3000`, respectively.
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+After defining the appropriate environment variables, you may serve the Laravel application using the `serve` Artisan command:
 
 ```bash
+# Serve the application...
+php artisan serve
+```
+
+Next, clone this repository and install its dependencies with `yarn install` or `npm install`. Then, copy the `.env.example` file to `.env.local` and supply the URL of your backend:
+
+```
+VITE_BACKEND_URL=http://localhost:8000
+```
+
+Finally, run the application via `npm run dev`. The application will be available at `http://localhost:3000`:
+
+```
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+> Note: Currently, we recommend using `localhost` during local development of your backend and frontend to avoid CORS "Same-Origin" issues.
 
-To create a production version of your app:
+### Authentication Hook
 
-```bash
-npm run build
-```
+Authentication of the user is done via the `hooks` file to check if the provided cookies is valid. Here we also check if the route accessed is a guest route or a protected route.
+By setting the user in the `getSession` we can access it in each page by the context `load` method to check if we are allowed to access this route together with . This also makes us take advantage of SSR the page with correct user information.
 
-You can preview the production build with `npm run preview`.
+## Security Vulnerabilities
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment.
+Please review [our security policy](https://github.com/laravel/breeze-next/security/policy) on how to report security vulnerabilities.
+
+## License
+
+Breeze SvelteKit is open-sourced software licensed under the MIT license.
