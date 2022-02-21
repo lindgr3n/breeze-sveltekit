@@ -1,9 +1,10 @@
-# Laravel Breeze - SvelteKit Edition 🏝️
+# Laravel Breeze - SvelteKit Edition 🦅
 
 ## Introduction
 
-This repository is an SvelteKit implementation of the
-This repository is an implementing of the [Laravel Breeze](https://laravel.com/docs/starter-kits) application / authentication starter kit frontend in [SvelteKit](https://kit.svelte.dev/). All of the authentication boilerplate is already written for you - powered by [Laravel Sanctum](https://laravel.com/docs/sanctum), allowing you to quickly begin pairing your beautiful SvelteKit frontend with a powerful Laravel backend.
+This repository is an SvelteKit implementation of the [Breeze Next](https://github.com/laravel/breeze-next) application.
+
+This is an implementing of the [Laravel Breeze](https://laravel.com/docs/starter-kits) application / authentication starter kit frontend in [SvelteKit](https://kit.svelte.dev/). All of the authentication boilerplate is already written for you - powered by [Laravel Sanctum](https://laravel.com/docs/sanctum), allowing you to quickly begin pairing your beautiful SvelteKit frontend with a powerful Laravel backend.
 
 ## Official Documentation
 
@@ -49,12 +50,8 @@ npm run dev
 ### Authentication Hook
 
 Authentication of the user is done via the `hooks` file to check if the provided cookies is valid. Here we also check if the route accessed is a guest route or a protected route.
-By setting the user in the `getSession` we can access it in each page by the context `load` method to check if we are allowed to access this route together with . This also makes us take advantage of SSR the page with correct user information.
+By setting the user in the `getSession` we can access it in each page by the context `load` method to check if we are allowed to access this route together with the guest flag. This also makes us take advantage of SSR the page with correct user information.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](https://github.com/laravel/breeze-next/security/policy) on how to report security vulnerabilities.
-
-## License
-
-Breeze SvelteKit is open-sourced software licensed under the MIT license.
+Please review the [security policy](https://github.com/laravel/breeze-next/security/policy) on how to report security vulnerabilities.
