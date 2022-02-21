@@ -12,7 +12,7 @@
 		return {
 			status: 200,
 			props: {
-				authenticated,
+				
 				userSession: user
 			}
 		};
@@ -23,11 +23,11 @@
 	import '../app.css';
 	import { user } from '$lib/store/user';
 
-
-	export let authenticated;
 	export let userSession
 
-	user.set(userSession);
+	if(userSession) {
+		user.set(userSession);
+	}
 </script>
 
 <svelte:head>

@@ -1,7 +1,7 @@
 <script>
     import { page } from "$app/stores";
     import { authClient } from "$lib/axios";
-    import { user } from "$lib/store/user";
+    import { user as userStore } from "$lib/store/user";
     import ApplicationLogo from "../ApplicationLogo.svelte";
     import Dropdown from "../Dropdown.svelte";
     import NavLink from "../NavLink.svelte";
@@ -10,12 +10,13 @@
 
     async function logout() {
         await authClient.post('/api/logout');
-        user.set(null)
+        userStore.set(null)
         // goto('/login')
-        window.location = '/login'
+        window.location.href = '/login'
     }
     
     let open = false;
+    export let user;
 </script>
 
 <nav class="bg-white border-b border-gray-100">
@@ -43,14 +44,14 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <Dropdown>
-                    {$user?.name ?? '...'}
+                    {user?.name ?? '...'}
                     <div slot="items" class="divide-y divide-gray-100">
                         <div class="px-4 py-3">         
                             <p class="text-sm leading-5">Signed in as</p>
-                            <p class="text-sm font-medium leading-5 text-gray-900 truncate">{$user?.email}</p>
+                            <p class="text-sm font-medium leading-5 text-gray-900 truncate">{user?.email}</p>
                         </div>
                         <div class="py-1">
-                            <div on:click={logout} tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Sign out</div>
+                            <div on:click={logout} tabindex="3" class="cursor-pointer text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Sign out</div>
                         </div>
                     </div>
                 </Dropdown>
@@ -121,10 +122,10 @@
      
                      <div class="ml-3">
                          <div class="font-medium text-base text-gray-800">
-                             {$user?.name}
+                             {user?.name}
                          </div>
                          <div class="font-medium text-sm text-gray-500">
-                             {$user?.email}
+                             {user?.email}
                          </div>
                      </div>
                  </div>

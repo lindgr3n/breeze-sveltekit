@@ -58,6 +58,8 @@ export async function post(event) {
 		path: '/'
 	});
 
+	event.locals.user = responseFromServer.data
+
 	return {
 		headers: {
 			'Set-Cookie': [xsrfCookie, laravelCookie, userCookie]
