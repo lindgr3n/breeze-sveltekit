@@ -1,5 +1,5 @@
 {
-	"name": "sveltekit-breeze",
+	"name": "breeze-sveltekit",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
