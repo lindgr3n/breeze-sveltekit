@@ -6,6 +6,8 @@ This repository is an SvelteKit implementation of the [Breeze Next](https://gith
 
 This is an implementing of the [Laravel Breeze](https://laravel.com/docs/starter-kits) application / authentication starter kit frontend in [SvelteKit](https://kit.svelte.dev/). All of the authentication boilerplate is already written for you - powered by [Laravel Sanctum](https://laravel.com/docs/sanctum), allowing you to quickly begin pairing your beautiful SvelteKit frontend with a powerful Laravel backend.
 
+If you do not want to install the backend from scratch you can find the repo tested against [here](https://github.com/lindgr3n/breeze-backend-api)
+
 ## Official Documentation
 
 ### Installation
