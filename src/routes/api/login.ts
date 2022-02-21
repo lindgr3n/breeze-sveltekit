@@ -29,7 +29,7 @@ export async function post(event) {
 	}
 
 	cookies = cookie.parse(loginRespons.headers['set-cookie'].join(';'));
-	const responseFromServer = await authClient('/api/v1/user', {
+	const responseFromServer = await authClient('/api/user', {
 		method: 'get',
 		headers: {
 			Referer: 'localhost:3000',

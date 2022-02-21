@@ -5,7 +5,7 @@ export async function get(event) {
     const cookies = cookie.parse(event.request.headers.get('cookie') || '');
 
 	let errorsResponse = null;
-    const responseUser = await authClient('/api/v1/user', {
+    const responseUser = await authClient('/api/user', {
 		method: 'get',
 		headers: {
 			Referer: 'localhost:3000',

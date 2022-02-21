@@ -8,7 +8,7 @@ async function isAuthenticated(cookies) {
 		return false;
 	}
 	// TODO: Create a authenticated endpoint
-	const responseFromServer = await authClient('/api/v1/user', {
+	const responseFromServer = await authClient('/api/user', {
 		method: 'get',
 		headers: {
 			Referer: 'localhost:3000',
