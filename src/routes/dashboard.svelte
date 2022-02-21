@@ -1,19 +1,5 @@
-<script context="module">
-	export async function load({ session }) {
-		const { authenticated } = session;
-
-		return {
-			props: {
-				authenticated
-			}
-		};
-	}
-</script>
-
 <script>
 import AppLayout from "$lib/components/layouts/AppLayout.svelte";
-
-	
 </script>
 
 <svelte:head>

@@ -40,7 +40,7 @@
 		});
 		user.set(loginResponse.data)
 		if (errors.length === 0) {
-			goto('/dashboard');
+			goto('/dashboard');	// Does not trigger hook
 		}
 	}
 </script>
