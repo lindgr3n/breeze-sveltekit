@@ -34,7 +34,7 @@
 		const formData = new FormData();
 		formData.append('email', email);
 		formData.append('password', password);
-		const loginResponse = await authClient.post('/api/login', formData).catch((e) => {
+		const loginResponse = await authClient.post('/login', formData).catch((e) => {
 			console.log('LOGIN ERROR', e.response);
 			errors = e.response.data.errors;
 		});
