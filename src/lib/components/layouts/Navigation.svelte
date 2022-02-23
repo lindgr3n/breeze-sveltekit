@@ -9,7 +9,7 @@
 	import ResponsiveNavLink from '../ResponsiveNavLink.svelte';
 
 	async function logout() {
-		await authClient.post('/api/logout');
+		await authClient.post('/logout');
 		userStore.set(null);
 		// goto('/login')
 		window.location.href = '/login';
