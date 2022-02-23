@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { variables } from '$lib/variables';
 
 export const authClient = axios.create({
 	baseURL: variables.backend_url,
