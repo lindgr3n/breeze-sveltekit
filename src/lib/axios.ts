@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const authClient = axios.create({
-	// baseURL: 'http://localhost:3000',
+	baseURL: variables.backend_url,
 	headers: {
 		'X-Requested-With': 'XMLHttpRequest'
 	},
