@@ -31,7 +31,7 @@
 	async function submitForm(event) {
 		const formData = new FormData();
 		formData.append('email', email);
-		const loginResponse = await authClient.post('/api/reset-password', formData).catch((e) => {
+		const loginResponse = await authClient.post('/reset-password', formData).catch((e) => {
 			console.log('LOGIN ERROR', e.response);
 			errors = e.response.data.errors;
 		});
