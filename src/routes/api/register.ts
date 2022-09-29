@@ -17,7 +17,8 @@ export async function post(event) {
 		data: {
 			name: data.get('name'),
 			email: data.get('email'),
-			password: data.get('password')
+			password: data.get('password'),
+			password_confirmation: data.get('password_confirmation')
 		}
 	}).catch((error) => {
 		errorsResponse = {

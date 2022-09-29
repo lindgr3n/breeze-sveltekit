@@ -17,6 +17,7 @@
 		formData.append('name', name);
 		formData.append('email', email);
 		formData.append('password', password);
+		formData.append('password_confirmation', password_confirmation);
 		const registerResponse = await authClient.post('/api/register', formData).catch((e) => {
 			console.log('REGISTER ERROR', e.response);
 			errors = e.response.data.errors;
