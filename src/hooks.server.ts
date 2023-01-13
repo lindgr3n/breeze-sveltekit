@@ -12,7 +12,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 				'laravel_session'
 			)}`
 		}
-	}).catch((e) => {
+	}).catch(() => {
 		// Unauthenticated
 	});
 

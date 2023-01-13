@@ -27,7 +27,7 @@ async function logoutAction(event: ServerLoadEvent | RequestEvent) {
 			'X-XSRF-TOKEN': cookies['XSRF-TOKEN'],
 			Cookie: `XSRF-TOKEN=${cookies['XSRF-TOKEN']};laravel_session=${cookies['laravel_session']}`
 		}
-	}).catch((_) => {
+	}).catch(() => {
 		//
 	});
 	event.cookies.delete('XSRF-TOKEN');

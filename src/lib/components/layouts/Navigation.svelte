@@ -42,7 +42,6 @@
 						<div class="py-1">
 							<form action="/logout" method="POST">
 								<button
-									tabindex="3"
 									class="cursor-pointer text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
 									role="menuitem"
 									type="submit"
