@@ -1,8 +1,8 @@
-<script>
-	let className;
+<script lang="ts">
+	let className = '';
 	export { className as class };
 	export let disabled = false;
-	export let value;
+	export let value: FormDataEntryValue | string = '';
 </script>
 
 <input

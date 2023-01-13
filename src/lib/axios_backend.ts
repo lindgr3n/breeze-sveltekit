@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios, { type AxiosInstance } from 'axios';
 
-export const authClient = axios.create({
+export const authClient: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_BACKEND_URL as string,
 	headers: {
 		'X-Requested-With': 'XMLHttpRequest'

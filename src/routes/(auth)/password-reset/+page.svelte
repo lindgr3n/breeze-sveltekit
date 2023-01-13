@@ -1,20 +1,4 @@
-<script context="module">
-	export async function load({ session }) {
-		const { authenticated } = session;
-
-		if (authenticated) {
-			return {
-				status: 302,
-				redirect: '/dashboard'
-			};
-		}
-		return {};
-	}
-</script>
-
-<script>
-	import { goto } from '$app/navigation';
-	import { authClient } from '$lib/axios';
+<script lang="ts">
 	import ApplicationLogo from '$lib/components/ApplicationLogo.svelte';
 	import AuthCard from '$lib/components/AuthCard.svelte';
 	import AuthSessionStatus from '$lib/components/AuthSessionStatus.svelte';
@@ -23,22 +7,26 @@
 	import Input from '$lib/components/Input.svelte';
 	import Label from '$lib/components/Label.svelte';
 	import GuestLayout from '$lib/components/layouts/GuestLayout.svelte';
+	import { enhance } from '$app/forms';
+	import type { ActionData } from './$types';
 
+	export let form: ActionData;
 	let email = '';
-	let status = null;
-	let errors = [];
+	let errors: Array<string> = [];
 
-	async function submitForm(event) {
-		const formData = new FormData();
-		formData.append('email', email);
-		const loginResponse = await authClient.post('/api/reset-password', formData).catch((e) => {
-			console.log('LOGIN ERROR', e.response);
-			errors = e.response.data.errors;
-		});
-		if (errors.length === 0) {
-			goto('/login');
-		}
-	}
+	$: errors = form?.errors ?? [];
+
+	// async function submitForm(event) {
+	// 	const formData = new FormData();
+	// 	formData.append('email', email);
+	// 	const loginResponse = await authClient.post('/api/reset-password', formData).catch((e) => {
+	// 		console.log('LOGIN ERROR', e.response);
+	// 		errors = e.response.data.errors;
+	// 	});
+	// 	if (errors.length === 0) {
+	// 		goto('/login');
+	// 	}
+	// }
 </script>
 
 <GuestLayout>
@@ -54,13 +42,10 @@
 			password reset link that will allow you to choose a new one.
 		</div>
 
-		<!-- Session Status -->
-		<AuthSessionStatus class="mb-4" {status} />
-
 		<!-- Validation Errors -->
 		<AuthValidationErrors class="mb-4" {errors} />
 
-		<form onSubmit={submitForm}>
+		<form method="post" use:enhance>
 			<!-- Email Address -->
 			<div>
 				<Label for="email">Email</Label>

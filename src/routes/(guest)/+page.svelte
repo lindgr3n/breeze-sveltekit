@@ -1,24 +1,14 @@
-<script context="module">
-	export async function load({ session }) {
-		const { authenticated } = session;
+<script lang="ts">
+	import type { PageData } from './$types';
 
-		return {
-			props: {
-				authenticated
-			}
-		};
-	}
-</script>
-
-<script>
-	export let authenticated;
+	export let data: PageData;
 </script>
 
 <div
 	class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0"
 >
 	<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-		{#if authenticated}
+		{#if data.user}
 			<a href="/dashboard" class="ml-4 text-sm text-gray-700 underline"> Dashboard </a>
 		{/if}
 		<a href="/login" class="ml-4 text-sm text-gray-700 underline">Login</a>

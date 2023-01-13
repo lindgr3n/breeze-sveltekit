@@ -1,8 +1,4 @@
-<script>
-	import { goto } from '$app/navigation';
-
-	import { authClient } from '$lib/axios';
-
+<script lang="ts">
 	import ApplicationLogo from '$lib/components/ApplicationLogo.svelte';
 
 	import AuthCard from '$lib/components/AuthCard.svelte';
@@ -11,27 +7,13 @@
 	import Input from '$lib/components/Input.svelte';
 	import Label from '$lib/components/Label.svelte';
 	import GuestLayout from '$lib/components/layouts/GuestLayout.svelte';
+	import type { ActionData } from './$types';
 
-	async function submitForm() {
-		const formData = new FormData();
-		formData.append('name', name);
-		formData.append('email', email);
-		formData.append('password', password);
-		formData.append('password_confirmation', password_confirmation);
-		const registerResponse = await authClient.post('/api/register', formData).catch((e) => {
-			console.log('REGISTER ERROR', e.response);
-			errors = e.response.data.errors;
-		});
-		if (errors.length === 0) {
-			goto('/login');
-		}
-	}
+	export let form: ActionData;
 
-	let name = '';
-	let email = '';
-	let password = '';
-	let password_confirmation = '';
-	let errors = [];
+	let errors: Array<string> = [];
+
+	$: errors = form?.errors ?? [];
 </script>
 
 <GuestLayout>
@@ -45,15 +27,16 @@
 		<!-- Validation Errors -->
 		<AuthValidationErrors class="mb-4" {errors} />
 
-		<form on:submit|preventDefault={submitForm}>
+		<form method="post" action="/register">
 			<!-- Name -->
 			<div>
 				<Label for="name">Name</Label>
 
 				<Input
 					id="name"
+					name="name"
 					type="text"
-					bind:value={name}
+					value={form?.name ?? ''}
 					class="block mt-1 w-full"
 					required
 					autoFocus
@@ -63,7 +46,14 @@
 			<!-- Email Address -->
 			<div class="mt-4">
 				<Label for="email">Email</Label>
-				<Input id="email" type="email" bind:value={email} class="block mt-1 w-full" required />
+				<Input
+					id="email"
+					name="email"
+					type="email"
+					value={form?.email ?? ''}
+					class="block mt-1 w-full"
+					required
+				/>
 			</div>
 
 			<!-- Password -->
@@ -71,8 +61,8 @@
 				<Label for="password">Password</Label>
 				<Input
 					id="password"
+					name="password"
 					type="password"
-					bind:value={password}
 					class="block mt-1 w-full"
 					required
 					autoComplete="new-password"
@@ -84,8 +74,8 @@
 				<Label for="password_confirmation">Confirm Password</Label>
 				<Input
 					id="password_confirmation"
+					name="password_confirmation"
 					type="password"
-					bind:value={password_confirmation}
 					class="block mt-1 w-full"
 					required
 				/>
