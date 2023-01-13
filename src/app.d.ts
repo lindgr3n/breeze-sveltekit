@@ -3,11 +3,22 @@
 // See https://kit.svelte.dev/docs#typescript
 // for information about these interfaces
 declare namespace App {
-	interface Locals {}
+	interface Locals {
+		user: User?;
+	}
 
-	interface Platform {}
+	// interface Platform {}
 
-	interface Session {}
+	// interface Session {}
 
-	interface Stuff {}
+	// interface Stuff {}
+}
+
+interface User {
+	id: number;
+	name: string;
+	email: string;
+	email_verified_at: Date;
+	created_at: Date;
+	updated_at: Date;
 }
