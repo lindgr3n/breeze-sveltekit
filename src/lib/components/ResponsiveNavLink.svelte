@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let active = false;
 	export let href = '';
 </script>

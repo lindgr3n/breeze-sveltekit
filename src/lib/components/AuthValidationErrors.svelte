@@ -1,6 +1,6 @@
-<script>
-	let className;
-	export let errors = [];
+<script lang="ts">
+	let className = '';
+	export let errors: Array<string> = [];
 	export { className as class };
 </script>
 

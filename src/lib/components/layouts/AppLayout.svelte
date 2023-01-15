@@ -1,6 +1,5 @@
-<script>
+<script lang="ts">
 	import { user } from '$lib/store/user';
-
 	import Navigation from './Navigation.svelte';
 </script>
 

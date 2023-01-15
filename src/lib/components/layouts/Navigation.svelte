@@ -1,22 +1,13 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	import { authClient } from '$lib/axios';
-	import { user as userStore } from '$lib/store/user';
 	import ApplicationLogo from '../ApplicationLogo.svelte';
 	import Dropdown from '../Dropdown.svelte';
 	import NavLink from '../NavLink.svelte';
 	import ResponsiveNavButton from '../ResponsiveNavButton.svelte';
 	import ResponsiveNavLink from '../ResponsiveNavLink.svelte';
 
-	async function logout() {
-		await authClient.post('/api/logout');
-		userStore.set(null);
-		// goto('/login')
-		window.location.href = '/login';
-	}
-
 	let open = false;
-	export let user;
+	export let user: User | null;
 </script>
 
 <nav class="bg-white border-b border-gray-100">
@@ -49,14 +40,15 @@
 							<p class="text-sm font-medium leading-5 text-gray-900 truncate">{user?.email}</p>
 						</div>
 						<div class="py-1">
-							<div
-								on:click={logout}
-								tabindex="3"
-								class="cursor-pointer text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
-								role="menuitem"
-							>
-								Sign out
-							</div>
+							<form action="/logout" method="POST">
+								<button
+									class="cursor-pointer text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
+									role="menuitem"
+									type="submit"
+								>
+									Sign out
+								</button>
+							</form>
 						</div>
 					</div>
 				</Dropdown>
@@ -132,8 +124,10 @@
 				</div>
 
 				<div class="mt-3 space-y-1">
-					<!-- Authentication -->
-					<ResponsiveNavButton on:click={logout}>Logout</ResponsiveNavButton>
+					<form action="/logout" method="POST">
+						<!-- Authentication -->
+						<ResponsiveNavButton>Logout</ResponsiveNavButton>
+					</form>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,4 @@
-<script>
-	import Button from './Button.svelte';
-
+<script lang="ts">
 	export let open = false;
 </script>
 

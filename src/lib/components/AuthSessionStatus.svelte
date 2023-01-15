@@ -1,6 +1,6 @@
-<script>
-	let className;
-	export let status = null;
+<script lang="ts">
+	let className = '';
+	export let status: string = '';
 	export { className as class };
 </script>
 

@@ -1,5 +1,13 @@
-<script>
+<script lang="ts">
+	import type { PageData } from './$types';
 	import AppLayout from '$lib/components/layouts/AppLayout.svelte';
+	import { user } from '$lib/store/user';
+
+	export let data: PageData;
+
+	if (data.user && !$user) {
+		user.set(data.user);
+	}
 </script>
 
 <svelte:head>

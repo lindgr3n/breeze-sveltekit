@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
 	let className = '';
-	let htmlFor;
+	let htmlFor: string;
 	export { className as class };
 	export { htmlFor as for };
 </script>

@@ -1,8 +1,7 @@
-<script>
+<script lang="ts">
 	let className = '';
-
 	export { className as class };
-	export let type = '';
+	export let type: 'button' | 'submit' | 'reset' = 'submit';
 </script>
 
 <button
