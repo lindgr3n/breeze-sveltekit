@@ -1,5 +1,5 @@
 import { authClient } from '$lib/axios_backend';
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import type { AxiosResponse } from 'axios';
 import cookie from 'cookie';
 import type { PageServerLoad, Actions } from './$types';
@@ -41,5 +41,6 @@ export const actions: Actions = {
 		if (errorsResponse.length > 0) {
 			return fail(400, { errors: errorsResponse });
 		}
+		throw redirect(303, '/login');
 	}
 };

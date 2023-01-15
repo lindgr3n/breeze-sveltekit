@@ -24,7 +24,7 @@ export const actions: Actions = {
 
 		const response: AxiosResponse = await authClient.get('/sanctum/csrf-cookie');
 		let headersCookies = response?.headers['set-cookie'] ?? [];
-		let headerCookies = cookie.parse(headersCookies.join(';')); // Unsure if we need to do this
+		let headerCookies = cookie.parse(headersCookies.join(';'));
 
 		let errorsResponse: Array<string> = [];
 		const loginResponse: AxiosResponse | void = await authClient('/login', {
