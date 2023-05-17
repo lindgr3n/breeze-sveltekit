@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { user } from '$lib/store/user';
+	import { page } from '$app/stores';
 	import Navigation from './Navigation.svelte';
 </script>
 
 <div class="min-h-screen bg-gray-100">
-	<Navigation user={$user} />
+	<Navigation user={$page?.data.user} />
 
 	<!-- Page Heading -->
 	<header class="bg-white shadow">

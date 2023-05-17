@@ -27,6 +27,7 @@
 					<NavLink href="/dashboard" active={$page.url.pathname === '/dashboard'}>
 						Dashboard
 					</NavLink>
+					<NavLink href="/profile" active={$page.url.pathname === '/profile'}>Profile</NavLink>
 				</div>
 			</div>
 
@@ -90,6 +91,9 @@
 			<div class="pt-2 pb-3 space-y-1">
 				<ResponsiveNavLink href="/dashboard" active={$page.url.pathname === '/dashboard'}>
 					Dashboard
+				</ResponsiveNavLink>
+				<ResponsiveNavLink href="/profile" active={$page.url.pathname === '/profile'}>
+					Profile
 				</ResponsiveNavLink>
 			</div>
 
