@@ -46,7 +46,7 @@ export const actions: Actions = {
 
 		headersCookies = loginResponse?.headers['set-cookie'] ?? [];
 		headerCookies = cookie.parse(headersCookies.join(';'));
-		const responseFromServer: AxiosResponse<User> | void = await authClient('/user', {
+		const responseFromServer: AxiosResponse<User> | void = await authClient('/api/user', {
 			method: 'get',
 			headers: {
 				Referer: url.host,
