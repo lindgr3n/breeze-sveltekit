@@ -3,7 +3,7 @@ import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	// Verify we are authenticated
-	const responseFromServer = await authClient('/user', {
+	const responseFromServer = await authClient('/api/user', {
 		method: 'get',
 		headers: {
 			Referer: event.url.host,
